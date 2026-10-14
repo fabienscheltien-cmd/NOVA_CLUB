@@ -808,7 +808,7 @@
       if (actx && actx.state === 'suspended') actx.resume();
     } catch (e) { actx = null; gain = null; }
     // Safari : "débloque" les deux vidéos pendant le geste (le son du néon est muet au début), puis les remet à zéro
-    cine.volume = 0;
+    cine.volume = gain ? 1 : 0;                   // avec Web Audio, c'est le gain qui fait les fondus : le volume de l'élément doit rester à 1
     [cine, neon].forEach(v => {
       v.muted = false;
       const p = v.play();
